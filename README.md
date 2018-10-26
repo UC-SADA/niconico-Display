@@ -20,10 +20,10 @@ WEB会議や、プレゼンテーションで使うと今までとは一味違�
 
 ファイルサイズは重くなりますが、パッケージ化しましたので、下記ZIPファイルをダウンロードして解凍しnicoG.exeファイルを実行すれば起動します。
 
-* [windows_64bit](app/nicoG-win32-x64.zip)
-* [windows_32bit](app/nicoG-win32-ia32.zip)
-* [mac_64bit](app/nicoG-darwin-x64.zip)
-* [linux_x86_64bit](app/nicoG-linux-x64.zip)
+* [windows_64bit](/raw/master/app/nicoG-win32-x64.zip)
+* [windows_32bit](/raw/master/app/nicoG-win32-ia32.zip)
+* [mac_64bit](/raw/master/app/nicoG-darwin-x64.zip)
+* [linux_x86_64bit](/raw/master/app/nicoG-linux-x64.zip)
 
 アプリの終了の仕方が上手くいっておらず。残存ファイルが残ってしまったので終了後タスクマネージャーでnicoG.exeのタスクを終了させてください。
 
