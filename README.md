@@ -40,3 +40,8 @@ MAC環境との相性悪いようです。ご了承ください。
 [ニコニコメソッドプレゼンを全社会議に取り入れてみたら会議が面白くなった](http://tech.uzabase.com/entry/2015/06/01/143202)
 
 [社内プレゼン大会にニコニコメソッドを取り入れてみた話](http://atoms.loftwork.jp/20170925_nicomethod/)
+
+
+### 続き
+
+ローカルサーバーで試したいという方は、[niconico-Display2](https://github.com/UC-SADA/niconico-Display2)をご利用ください。
