@@ -2,9 +2,49 @@
 const electron = require('electron');
 const elc_app = electron.app;
 const elc_BrowserWindow = electron.BrowserWindow;
-
+const ipcMain = electron.ipcMain;
 var mainWindow = null;
 var subWindow = null;
+let loginWindow;
+let isLoginWindow = false;
+
+// ログイン要求時に発火するイベント
+elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
+
+    // プロキシサーバーからの要求だったら続行
+    if(authInfo.isProxy){
+
+        // 重複発火対策
+        if(!isLoginWindow){
+            isLoginWindow = true;
+        }
+        else{
+            return;
+        }
+
+        // 認証情報が送信されるまで待機
+        event.preventDefault();
+
+        loginWindow = new electron.BrowserWindow({
+            width: 300,
+            height: 180,
+            resizable: false
+        });
+
+        // 入力ウィンドウをロード
+        loginWindow.setMenu(null);
+        loginWindow.loadURL('file://' + __dirname + '/login.html');
+
+        // IPCチャネル"proxy-auth"で受信待機
+        ipcMain.on("proxy-auth", (event, username, password)=>{
+
+            // 受信した認証情報をプロキシサーバーへ転送
+            callback(username, password);
+            isLoginWindow = false;
+        });
+    }
+});
+
 elc_app.on('ready', function () {
     var size = electron.screen.getPrimaryDisplay().size;
     mainWindow = new elc_BrowserWindow({
@@ -48,5 +88,15 @@ elc_app.on('ready', function () {
       subWindow.on('closed', function () {
         subWindow = null;
         });
+        /*
+        loginWindow = new electron.BrowserWindow({
+            width: 300,
+            height: 180,
+            resizable: false
+        });
 
+        // 入力ウィンドウをロード
+        loginWindow.setMenu(null);
+        loginWindow.loadURL('file://' + __dirname + '/login.html');
+        */
 });
