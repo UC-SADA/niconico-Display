@@ -24,13 +24,12 @@ elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
 
         // 認証情報が送信されるまで待機
         event.preventDefault();
-
         loginWindow = new electron.BrowserWindow({
             width: 300,
             height: 180,
             resizable: false
         });
-
+        loginWindow.setAlwaysOnTop(true);
         // 入力ウィンドウをロード
         loginWindow.setMenu(null);
         loginWindow.loadURL('file://' + __dirname + '/login.html');
@@ -68,7 +67,7 @@ elc_app.on('ready', function () {
       mainWindow = null;
       });
 
-
+/*
       subWindow = new elc_BrowserWindow({
         left: 0,
         top: 0,
@@ -84,19 +83,9 @@ elc_app.on('ready', function () {
 //      subWindow.maximize();
 //      subWindow.setAlwaysOnTop(true);
       subWindow.loadURL("https://nico-chat.herokuapp.com/controller");
-  //    subWindow.openDevTools();
+//    subWindow.openDevTools();
       subWindow.on('closed', function () {
         subWindow = null;
         });
-        /*
-        loginWindow = new electron.BrowserWindow({
-            width: 300,
-            height: 180,
-            resizable: false
-        });
-
-        // 入力ウィンドウをロード
-        loginWindow.setMenu(null);
-        loginWindow.loadURL('file://' + __dirname + '/login.html');
         */
 });
