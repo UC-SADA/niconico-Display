@@ -4,8 +4,6 @@ const elc_app = electron.app;
 const elc_BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 let inputWindow;
-var mainWindow = null;
-var subWindow = null;
 let loginWindow;
 let isLoginWindow = false;
 

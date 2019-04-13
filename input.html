@@ -1,6 +1,11 @@
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>Room</title>
+</head>
 <body>
-  <p>開くルームを入力してください。<input type="text" id="room"></p>
+  <p>開くルームを入力してください。</p>
+  <input type="text" id="room">
   <button id="nico-window">Open niconico-Display</button>
   <script>
   const electron = require("electron")
@@ -8,6 +13,7 @@
   const path = require('path')
   const nicoWindowBtn = document.getElementById('nico-window')
   let win
+  let win2
 
   // ボタンクリック時に、レンダラープロセスから別ウィンドウを表示
   nicoWindowBtn.addEventListener('click', function(event) {
@@ -30,9 +36,25 @@
     win.setAlwaysOnTop(true);
   //  win.openDevTools();
     win.loadURL(modalPath)
-    window.close();
-  })
+    win2 = new BrowserWindow({
+        left: 0,
+        top: 0,
+        width: 400,
+        height: size.height,
+        frame: true,
+        show: true,
+        transparent: false,
+        resizable: true,
+        webPreferences: {nodeIntegration: false}
+    });
+  //    mainWindow.setIgnoreMouseEvents(true);
+  //    mainWindow.maximize();
+  //    mainWindow.setAlwaysOnTop(true);
+    win2.loadURL("https://nico-chat.herokuapp.com/controller/" + room);
+  //    mainWindow.openDevTools();
+      window.close();
 
+  })
   </script>
 </body>
 <html>
