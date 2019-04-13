@@ -1,0 +1,38 @@
+<html>
+<body>
+  <p>開くルームを入力してください。<input type="text" id="room"></p>
+  <button id="nico-window">Open niconico-Display</button>
+  <script>
+  const electron = require("electron")
+  const BrowserWindow = require('electron').remote.BrowserWindow
+  const path = require('path')
+  const nicoWindowBtn = document.getElementById('nico-window')
+  let win
+
+  // ボタンクリック時に、レンダラープロセスから別ウィンドウを表示
+  nicoWindowBtn.addEventListener('click', function(event) {
+    var room = document.getElementById('room').value
+    var modalPath = path.join("https://nico-chat.herokuapp.com/display/" + room)
+    var size = electron.screen.getPrimaryDisplay().size;
+    win = new BrowserWindow({
+      left: 0,
+      top: 0,
+      width: size.width,
+      height: size.height,
+      frame: false,
+      show: true,
+      transparent: true,
+      resizable: true,
+      webPreferences: {nodeIntegration: false}
+    });
+    win.setIgnoreMouseEvents(true);
+    win.maximize();
+    win.setAlwaysOnTop(true);
+  //  win.openDevTools();
+    win.loadURL(modalPath)
+    window.close();
+  })
+
+  </script>
+</body>
+<html>
