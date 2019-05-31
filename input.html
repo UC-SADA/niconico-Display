@@ -8,17 +8,25 @@
   <input type="text" id="room">
   <button id="nico-window">Open niconico-Display</button>
   <script>
-  const electron = require("electron")
-  const BrowserWindow = require('electron').remote.BrowserWindow
-  const path = require('path')
-  const nicoWindowBtn = document.getElementById('nico-window')
-  let win
-  let win2
+    const electron = require('electron')
+    const BrowserWindow = require('electron').remote.BrowserWindow
+    const path = require('path')
+    const nicoWindowBtn = document.getElementById('nico-window')
+    let win
+    let win2
 
   // ボタンクリック時に、レンダラープロセスから別ウィンドウを表示
   nicoWindowBtn.addEventListener('click', function(event) {
     var room = document.getElementById('room').value
-    var modalPath = path.join("https://nico-chat.herokuapp.com/display/" + room)
+    var displayUrl ="";
+    var controllerUrl ="";
+    if(room == "localhost:2525"){
+      displayUrl = "localhost:2525/diplay/localhost"
+      controllerUrl = "localhost:2525/controller/localhost"
+    }else{
+      displayUrl = path.join("https://nico-chat.herokuapp.com/display/" + room)
+      controllerUrl = path.join("https://nico-chat.herokuapp.com/controller/" + room)
+    }
     var size = electron.screen.getPrimaryDisplay().size;
     win = new BrowserWindow({
       left: 0,
@@ -35,7 +43,7 @@
     win.maximize();
     win.setAlwaysOnTop(true);
   //  win.openDevTools();
-    win.loadURL(modalPath)
+    win.loadURL(displayUrl)
     win2 = new BrowserWindow({
         left: 0,
         top: 0,
@@ -50,7 +58,7 @@
   //    mainWindow.setIgnoreMouseEvents(true);
   //    mainWindow.maximize();
   //    mainWindow.setAlwaysOnTop(true);
-    win2.loadURL("https://nico-chat.herokuapp.com/controller/" + room);
+    win2.loadURL(controllerUrl);
   //    mainWindow.openDevTools();
       window.close();
 

@@ -27,7 +27,10 @@ elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
         loginWindow = new electron.BrowserWindow({
             width: 300,
             height: 180,
-            resizable: false
+            resizable: false,
+            webPreferences: {
+              nodeIntegration: true
+            }
         });
         loginWindow.setAlwaysOnTop(true);
         // 入力ウィンドウをロード
@@ -47,6 +50,9 @@ elc_app.on('ready', function (event) {
   inputWindow = new electron.BrowserWindow({
       width: 300,
       height: 180,
+      webPreferences: {
+        nodeIntegration: true
+      }
 //      resizable: false
   });
   inputWindow.setAlwaysOnTop(true);
