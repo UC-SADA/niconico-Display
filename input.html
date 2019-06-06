@@ -36,7 +36,7 @@
       frame: false,
       show: true,
       transparent: true,
-      resizable: true,
+      resizable: false,
       webPreferences: {nodeIntegration: false}
     });
     win.setIgnoreMouseEvents(true);
@@ -59,8 +59,9 @@
   //    mainWindow.maximize();
   //    mainWindow.setAlwaysOnTop(true);
     win2.loadURL(controllerUrl);
-  //    mainWindow.openDevTools();
+//      win2.openDevTools();
       window.close();
+//      console.log(displayUrl);
 
   })
   </script>
