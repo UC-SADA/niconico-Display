@@ -53,12 +53,11 @@ elc_app.on('ready', function (event) {
       webPreferences: {
         nodeIntegration: true
       }
-//      resizable: false
   });
   inputWindow.setAlwaysOnTop(true);
-  // 入力ウィンドウをロード
 //  inputWindow.setMenu(null);
 //  inputWindow.openDevTools();
-  inputWindow.loadURL('file://' + __dirname + '/input.html');
+//  inputWindow.loadURL('http://localhost:2525/start');
+  inputWindow.loadURL('http://localhost:2525/start');
   console.log("inputWindow")
 });
