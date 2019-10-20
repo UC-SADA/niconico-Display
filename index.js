@@ -58,6 +58,6 @@ elc_app.on('ready', function (event) {
 //  inputWindow.setMenu(null);
 //  inputWindow.openDevTools();
 //  inputWindow.loadURL('http://localhost:2525/start');
-  inputWindow.loadURL('http://localhost:2525/start');
+  inputWindow.loadURL('https://nico-chat.herokuapp.com/start');
   console.log("inputWindow")
 });
