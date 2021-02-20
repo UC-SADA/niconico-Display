@@ -39,11 +39,13 @@ elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
         loginWindow.loadURL('file://' + __dirname + '/login.html');
 
         // IPCチャネル"proxy-auth"で受信待機
-        ipcMain.on("proxy-auth", (event, username, password)=>{
+        ipcMain.once("proxy-auth", (event, username, password)=>{
 
             // 受信した認証情報をプロキシサーバーへ転送
             callback(username, password);
             isLoginWindow = false;
+            // ログインウィンドウを閉じる
+            loginWindow.close();
         });
     }
 });
