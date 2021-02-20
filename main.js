@@ -89,8 +89,8 @@ ipcMain.on("room-name", (event, roomname)=>{
   // ディスプレイ用の透明なウィンドウを作成
   displayWindow = new electron.BrowserWindow({
 
-    width: size.width - 300,  // electron issue 27286 で最大サイズだと透明にならないので-2px
-    height: size.height - 300,　// electron issue 27286 で最大サイズだと透明にならないので-2px
+    width: size.width - 2, // electron issue 27286 で最大サイズだと透明にならないので-2px
+    height: size.height - 2, // electron issue 27286 で最大サイズだと透明にならないので-2px
     frame: false,
     show: true,
     transparent: true,
