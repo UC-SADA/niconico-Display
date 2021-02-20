@@ -15,23 +15,13 @@
 </body>
 
 <script>
-  const electron = require("electron");
-  // レンダラープロセス側のIPCメンバ
-  const ipcRenderer = electron.ipcRenderer;
-  // レンダラープロセス側からメインプロセス側を操作するメンバ
-  const remote = electron.remote;
   // ログインボタン
   function sendIpc(){
-    // 入力ウィンドウをカレントにする
-    const currentWindow = remote.getCurrentWindow();
     // IPCチャネル"proxy-auth"でユーザー名/パスワードを送信
-    ipcRenderer.send(
-        "proxy-auth",
+    window.api.sendProxyAuth(
         document.getElementById("username").value,
         document.getElementById("password").value
     );
-    // 入力ウィンドウを自動的に閉じる
-    currentWindow.close();
 }
 </script>
 </html>

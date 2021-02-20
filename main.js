@@ -29,7 +29,8 @@ elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
             height: 180,
             resizable: false,
             webPreferences: {
-              nodeIntegration: true
+              nodeIntegration: false,
+              preload: __dirname + '/preload.js'
             }
         });
         loginWindow.setAlwaysOnTop(true);
