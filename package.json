@@ -1,5 +1,9 @@
 {
   "name": "niconico-Display",
   "version": "0.0.1",
-  "main": "index.js"
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^11.2.3",
+    "node": "^15.8.0"
+  }
 }

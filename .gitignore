@@ -62,3 +62,8 @@ typings/
 
 # winmerge directory
 winmerge/
+
+# build app
+dist/
+D
+# buildapps
