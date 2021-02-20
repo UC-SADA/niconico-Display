@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Room</title>
+</head>
+
+<body>
+    <form name="myroom">
+        <p>開くルームを入力してください。</p><input id="roomname" type="text" /><button onclick="sendIpc();">入室</button>
+    </form>
+    <script type="text/javascript">
+        // ログインボタン
+        function sendIpc() {
+            // ルーム名をメインプロセスに送信
+            window.api.sendRoomName(
+                document.getElementById("roomname").value
+            );
+            // 入力ウィンドウを自動的に閉じる
+            window.close();
+        };
+    </script>
+</body>
+
+</html>

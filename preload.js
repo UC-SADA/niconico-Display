@@ -9,6 +9,10 @@ contextBridge.exposeInMainWorld(
         // Fromレンダラ Toメインでプロキシ認証のログイン情報を送信する
         sendProxyAuth: (username, password) => {
             ipcRenderer.send("proxy-auth", username, password);
+        },
+        // Fromレンダラ Toメインでルーム名を送信する
+        sendRoomName: (roomname) => {
+            ipcRenderer.send("room-name", roomname);
         }
     }
 );

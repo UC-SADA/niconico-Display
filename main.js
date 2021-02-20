@@ -5,7 +5,11 @@ const elc_BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 let inputWindow;
 let loginWindow;
+let displayWindow;
+let controllerWindow;
 let isLoginWindow = false;
+
+var appURL = 'https://nico-chat.herokuapp.com'
 
 // ログイン要求時に発火するイベント
 
@@ -50,18 +54,70 @@ elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
         });
     }
 });
+
+
 elc_app.on('ready', function (event) {
   inputWindow = new electron.BrowserWindow({
       width: 300,
       height: 180,
       webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: false,
+        contextIsolation: true,
+        preload: __dirname + '/preload.js'
       }
   });
   inputWindow.setAlwaysOnTop(true);
 //  inputWindow.setMenu(null);
 //  inputWindow.openDevTools();
-//  inputWindow.loadURL('http://localhost:2525/start');
-  inputWindow.loadURL('https://nico-chat.herokuapp.com/start');
+    inputWindow.loadURL('file://' + __dirname + '/start.html');
+//  inputWindow.loadURL(appURL + '/start');
   console.log("inputWindow")
 });
+
+
+// ルーム名が送信されたら発火
+ipcMain.on("room-name", (event, roomname)=>{
+  console.log(roomname);
+  
+  //接続先のURLを設定
+  var displayUrl = appURL + '/display/' + roomname;
+  var controllerUrl = appURL +'/controller/' + roomname;
+
+  // メインディスプレイのサイズ取得
+  var size = electron.screen.getPrimaryDisplay().size;
+        
+  // ディスプレイ用の透明なウィンドウを作成
+  displayWindow = new electron.BrowserWindow({
+
+    width: size.width,
+    height: size.height,
+    frame: false,
+    show: true,
+    transparent: true,
+    resizable: false,
+    webPreferences: {nodeIntegration: false}
+  });
+  displayWindow.setIgnoreMouseEvents(true);
+  displayWindow.maximize();
+  displayWindow.setAlwaysOnTop(true);
+        
+//  displayWindow.openDevTools(); 
+     //ディスプレイURLのロード
+  displayWindow.loadURL(displayUrl);
+        
+    //コントローラ用のウィンドウを作成
+  controllerWindow = new electron.BrowserWindow({
+    center: true,
+    width: 400,
+    height: 800,
+    frame: true,
+    show: true,
+    transparent: false,
+    resizable: true,
+    webPreferences: {nodeIntegration: false}
+  });
+        
+  //コントローラURLのロード
+  controllerWindow.loadURL(controllerUrl);
+});
+
