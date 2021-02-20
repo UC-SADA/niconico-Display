@@ -30,6 +30,7 @@ elc_app.on("login", (event, webContents, request, authInfo, callback)=>{
             resizable: false,
             webPreferences: {
               nodeIntegration: false,
+              contextIsolation: true,
               preload: __dirname + '/preload.js'
             }
         });
