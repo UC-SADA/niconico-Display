@@ -1,16 +1,17 @@
 # niconico-Display
 
-[NicoNico SPEENYA](https://github.com/chimerast/niconico-speenya)を参考に作成した[herokuアプリ](https://nico-chat.herokuapp.com/controller/)を作ったので、それをelectronの透明スクリーンを使ってデスクトップ上に表示させるソースを書いてみました。
+[UC-SADAさんのfork元リポジトリ](https://github.com/UC-SADA/niconico-Display)のソースを取得したところ自身の環境だと動作しなかったのでいろいろ修正してみる
 
 ### 動作環境
-とりあえず、どんなもんか試してみたい方は
-* [windows 64bit用　パッケージファイル](https://github.com/UC-SADA/niconico-Display_win64/archive/master.zip)
-* [mac用　パッケージファイル](https://github.com/UC-SADA/niconico-Display_win64/archive/master.zip)
-### 動作環境
+* windows 10 64bit
+* node.js v15.8.0
+* electron 11.2.3
 
-* windows 7 64bit
-* node.js v12.1.0
-* electron 5.0.1
+### 修正ポイント（）
+* メインプロセスとレンダラ間はContextBridgeでやる　：済
+* レンダラ側でnode.jsの関数使わない
+* レンダラからレンダラ開く構成っぽいのを修正（サーバ側のstart修正しなきゃだな）
+
 
 ### 動かし方
 
@@ -19,7 +20,7 @@ node.js　と　electronをPCにインストール。
 本ソースコードを保存したディレクトリまで移動し下記コマンドを実行。
 
 ```bash
-$ electron .
+$ npm start
 ```
 
 好きな「ルーム名」を入力。
@@ -42,6 +43,3 @@ WEB会議や、プレゼンテーションで使うと今までとは一味違�
 [社内プレゼン大会にニコニコメソッドを取り入れてみた話](http://atoms.loftwork.jp/20170925_nicomethod/)
 
 
-### 続き
-
-ローカルサーバーで試したいという方は、[niconico-Display2](https://github.com/UC-SADA/niconico-Display2)をご利用ください。
